@@ -7,6 +7,6 @@ services:
     image:
       eventbox-home:v1
     ports:
-      - 8080:2048
+      - 8000:2048
     restart: always
     command: npm run prod

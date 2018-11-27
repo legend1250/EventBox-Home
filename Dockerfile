@@ -13,7 +13,6 @@ RUN npm install -g --silent yarn
 RUN yarn install
 
 RUN npm install -g pm2
-RUN npm install -g babel-cli
 
 ## Add application code
 COPY [".", "/app/"]

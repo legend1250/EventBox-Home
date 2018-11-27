@@ -16,14 +16,14 @@ import { Provider } from 'mobx-react'
 import { Event, Network } from './store'
 import { getEvents, getEventById } from './api'
 
-import webpack from 'webpack'
-import configSSR from '../webpack.server'
-import webpackDevMiddleware from 'webpack-dev-middleware' 
+// import webpack from 'webpack'
+// import configSSR from '../webpack.server'
+// import webpackDevMiddleware from 'webpack-dev-middleware' 
 
 register(['.css', '.scss'])
 
 const app = express()
-const compiler = webpack(configSSR)
+// const compiler = webpack(configSSR)
 
 // morgan logging
 morgan.token('decodeUrl', function (req, res) {
@@ -33,10 +33,10 @@ morgan.token('decodeUrl', function (req, res) {
 
 app.use('/static', express.static(path.resolve(__dirname, '../dist')))
 app.use(morgan('- :method :decodeUrl :status :response-time ms'))
-app.use(webpackDevMiddleware(compiler,{
-  noInfo: true,
-  publicPath: configSSR.output.publicPath
-}))
+// app.use(webpackDevMiddleware(compiler,{
+//   noInfo: true,
+//   publicPath: configSSR.output.publicPath
+// }))
 
 app.get('/*', async (req, res) => {
   const parsedUrl = parse(req.url, true)
@@ -49,7 +49,7 @@ app.get('/*', async (req, res) => {
     return res.status(204).end()
   }
 
-  const { data: { events } } = await getEvents({limit: 10})
+  const { data: { events } } = await getEvents({limit: 9})
 
   let stores = {
     event: new Event(events),

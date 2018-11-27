@@ -15,6 +15,7 @@ export const getEvents = ({limit, cursor}) => {
           title
           slug
           description
+          shortDescription
           images {
             thumbnail
           }
